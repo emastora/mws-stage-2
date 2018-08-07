@@ -1,0 +1,36 @@
+{
+    "name": "restaurant-reviews",
+    "version": "1.0.0",
+    "description": "Mobile Web Specialist Nanodegree",
+    "author": "Manos",
+    "license": "ISC",
+    "main": "index.js",
+    "scripts": {
+        "start": "gulp && gulp watch",
+        "build": "gulp"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babelify": "^8.0.0",
+        "browser-sync": "^2.23.6",
+        "browserify": "^16.1.1",
+        "eslint-config-standard": "^11.0.0",
+        "eslint-plugin-import": "^2.12.0",
+        "eslint-plugin-node": "^6.0.1",
+        "eslint-plugin-promise": "^3.8.0",
+        "eslint-plugin-standard": "^3.1.0",
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-babel": "^7.0.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-minify-css": "^1.2.4",
+        "gulp-responsive-images": "0.0.3",
+        "gulp-sass": "^3.1.0",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-uglify": "^3.0.0",
+        "watchify": "^3.11.0"
+    }
+}

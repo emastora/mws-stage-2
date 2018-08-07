@@ -1,18 +1,25 @@
 console.log("Hello Service Worker!");
 
+const version = 2;
+const appCacheName = `cache-v${version}`;
+
 self.addEventListener('install', function(event) {
     event.waitUntil(
-        caches.open('JohnyCache4').then(function(cache) {
+        caches.open(appCacheName).then(function(cache) {
+            console.log('Service Worker installed');
             return cache.addAll([
-                '/',
-                '/restaurant.html',
-                './js/dbhelper.js',
-                './js/main.js',
-                './js/restaurant_info.js',
-                './img/',
-                './css/responsive.css',
-                './css/styles.css',
-                './data/restaurants.json',
+                './',
+                'index.html',
+                'restaurant.html',
+                'manifest.json',
+                'build/js/app.js',
+                'build/js/dbhelper.js',
+                'build/js/main.js',
+                'build/js/restaurant_info.js',
+                'build/js/idb.js',
+                'build/css/styles.css',
+                'build/css/responsive.css',
+                'assets/icons/favicon.ico'
             ]);
         })
     );
@@ -20,16 +27,32 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('activate', function(event) {
     event.waitUntil(
-        caches.delete('JohnyCache3')
-    )
-})
+        caches.keys().then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+                if (appCacheName.indexOf(key) === -1) {
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
+});
 
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request).then(function(response) {
-            if (response) return response;
-            // else if (event.request.url.endsWith('.jpg') && response.status == 404) return fetch('/img/offline.jpg');
-            return fetch(event.request);
-        })
-    )
-})
+    if (event.request.method === 'GET') {
+        event.respondWith(
+            caches.match(event.request).then(function(response) {
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request).then(function(response) {
+                    return response;
+                }).catch(function(error) {
+                    throw error;
+                });
+            }).catch(function() {
+                return new Response('No cache');
+            })
+        );
+    }
+
+});
