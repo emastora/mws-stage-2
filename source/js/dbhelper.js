@@ -241,30 +241,37 @@ class DBHelper {
     //     return (`/img/${restaurant.photograph}`);
     // }
 
+    static imageUrlForRestaurant(restaurant, type) {
+        if (restaurant.photograph) {
+            return `/build/img/${restaurant.id}.jpg`;
+        }
+        return `build/img/${type}/${restaurant.id}.jpg`;
+    }
+
     /**
      * Restaurant image URL.
      */
-    static imageUrlForRestaurant(restaurant, imgWidth = null) {
-        if (imgWidth !== null) {
-            return `/build/img/${restaurant.id}-${imgWidth}.jpg`;
-        }
-        return `/build/img/${restaurant.id}-original.jpg`;
+    // static imageUrlForRestaurant(restaurant, imgWidth = null) {
+    //     if (imgWidth !== null) {
+    //         return `/build/img/${restaurant.id}-${imgWidth}.jpg`;
+    //     }
+    //     return `/build/img/${restaurant.id}-original.jpg`;
 
-        //return (`/img/${restaurant.photograph}`);
-    }
+    //return (`/img/${restaurant.photograph}`);
+    // }
 
     /**
      * Restaurant image SRCSET.
      */
-    static imageSrcSetForRestaurant(restaurant) {
-        const widthXsmall = DBHelper.imageUrlForRestaurant(restaurant, 'xsmall');
-        const widthSmall = DBHelper.imageUrlForRestaurant(restaurant, 'small');
-        const widthMedium = DBHelper.imageUrlForRestaurant(restaurant, 'medium');
-        const widthLarge = DBHelper.imageUrlForRestaurant(restaurant, 'large');
-        const widthOriginal = DBHelper.imageUrlForRestaurant(restaurant);
-        const imageSrcSet = `${widthXsmall} 360w, ${widthSmall} 520w, ${widthMedium} 800w, ${widthLarge} 1000w, ${widthOriginal} 1500w`;
-        return imageSrcSet;
-    }
+    // static imageSrcSetForRestaurant(restaurant) {
+    //     const widthXsmall = DBHelper.imageUrlForRestaurant(restaurant, 'xsmall');
+    //     const widthSmall = DBHelper.imageUrlForRestaurant(restaurant, 'small');
+    //     const widthMedium = DBHelper.imageUrlForRestaurant(restaurant, 'medium');
+    //     const widthLarge = DBHelper.imageUrlForRestaurant(restaurant, 'large');
+    //     const widthOriginal = DBHelper.imageUrlForRestaurant(restaurant);
+    //     const imageSrcSet = `${widthXsmall} 360w, ${widthSmall} 520w, ${widthMedium} 800w, ${widthLarge} 1000w, ${widthOriginal} 1500w`;
+    //     return imageSrcSet;
+    // }
 
     /**
      * Map marker for a restaurant.

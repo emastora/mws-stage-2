@@ -1,6 +1,6 @@
 console.log("Hello Service Worker!");
 
-const version = 2;
+const version = 15;
 const appCacheName = `cache-v${version}`;
 
 self.addEventListener('install', function(event) {
@@ -17,9 +17,20 @@ self.addEventListener('install', function(event) {
                 'build/js/main.js',
                 'build/js/restaurant_info.js',
                 'build/js/idb.js',
-                'build/css/styles.css',
-                'build/css/responsive.css',
-                'assets/icons/favicon.ico'
+                // 'build/css/styles.css',
+                // 'build/css/responsive.css',
+                'build/css/main.css',
+                'assets/icons/favicon.ico',
+                'build/img/1.jpg',
+                'build/img/2.jpg',
+                'build/img/3.jpg',
+                'build/img/4.jpg',
+                'build/img/5.jpg',
+                'build/img/6.jpg',
+                'build/img/7.jpg',
+                'build/img/8.jpg',
+                'build/img/9.jpg',
+                'build/img/10.jpg',
             ]);
         })
     );
@@ -50,7 +61,7 @@ self.addEventListener('fetch', function(event) {
                     throw error;
                 });
             }).catch(function() {
-                return new Response('No cache');
+                return new Response('No cache items');
             })
         );
     }

@@ -17,38 +17,46 @@ const scriptRoot = 'source/js/**/*.js';
 const htmlRoot = './**/*.html';
 const browserDir = './';
 
-gulp.task('images', function() {
-    gulp.src(imageRoot)
-        .pipe(responsive({
-            '*': [{
-                    width: 360,
-                    quality: 70,
-                    suffix: '-xsmall'
-                },
-                {
-                    width: 520,
-                    quality: 70,
-                    suffix: '-small'
-                },
-                {
-                    width: 800,
-                    quality: 70,
-                    suffix: '-medium'
-                },
-                {
-                    width: 1000,
-                    quality: 70,
-                    suffix: '-large'
-                },
-                {
-                    width: 100,
-                    percentage: true,
-                    quality: 70,
-                    suffix: '-original'
-                }
-            ]
-        }))
-        .pipe(gulp.dest('build/img'));
+// gulp.task('images', function() {
+//     gulp.src(imageRoot)
+//         .pipe(responsive({
+//             '*': [
+//                 {
+//                     width: 360,
+//                     quality: 70,
+//                     suffix: '-xsmall'
+//                 },
+//                 {
+//                     width: 520,
+//                     quality: 70,
+//                     suffix: '-small'
+//                 },
+//                 {
+//                     width: 800,
+//                     quality: 70,
+//                     suffix: '-medium'
+//                 },
+//                 {
+//                     width: 1000,
+//                     quality: 70,
+//                     suffix: '-large'
+//                 },
+//                 {
+//                     width: 100,
+//                     percentage: true,
+//                     quality: 70,
+//                     suffix: '-original'
+//                 }
+//             ]
+//         }))
+//         .pipe(gulp.dest('build/img'));
+// });
+
+gulp.task("images", () => {
+    return gulp
+        .src(imageRoot)
+        // .pipe($.cache($.imagemin()))
+        .pipe(gulp.dest("build/img"));
 });
 
 gulp.task('styles', function() {
@@ -88,6 +96,8 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('default', ['images', 'styles', 'scripts', 'watch', 'browser-sync']);
+// gulp.task('default', ['styles', 'scripts', 'watch', 'browser-sync']);
+
 
 gulp.task('watch', function() {
     gulp.watch(scriptRoot, ['scripts']);
