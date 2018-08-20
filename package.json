@@ -7,7 +7,7 @@
     "main": "index.js",
     "scripts": {
         "start": "gulp && gulp watch",
-        "build": "gulp"
+        "buildTool": "gulp"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
@@ -26,11 +26,15 @@
         "gulp-autoprefixer": "^5.0.0",
         "gulp-babel": "^7.0.1",
         "gulp-concat": "^2.6.1",
+        "gulp-imagemin": "^4.1.0",
         "gulp-minify-css": "^1.2.4",
         "gulp-responsive-images": "0.0.3",
         "gulp-sass": "^3.1.0",
         "gulp-sourcemaps": "^2.6.4",
         "gulp-uglify": "^3.0.0",
         "watchify": "^3.11.0"
+    },
+    "dependencies": {
+        "imagemin-mozjpeg": "^7.0.0"
     }
 }
