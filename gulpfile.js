@@ -12,7 +12,7 @@ const browserSync = require('browser-sync');
 const imagemin = require('gulp-imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const resizer = require('gulp-image-resize');
-// const webp = require('gulp-webp');
+const webp = require('gulp-webp');
 
 gulp.task("images", () => {
     return gulp
@@ -43,7 +43,7 @@ gulp.task("images", () => {
                 }
             ]
         }))
-        // .pipe(webp())
+        .pipe(webp())
         .pipe(gulp.dest("buildTool/img"));
 });
 
