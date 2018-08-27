@@ -11,6 +11,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync');
 const imagemin = require('gulp-imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
+const resizer = require('gulp-image-resize');
+// const webp = require('gulp-webp');
 
 gulp.task("images", () => {
     return gulp
@@ -22,6 +24,26 @@ gulp.task("images", () => {
         ], {
             verbose: true
         }))
+        .pipe(responsive({
+            '*': [{
+                    width: 360,
+                    quality: 70,
+                    suffix: '-small'
+                },
+                {
+                    width: 800,
+                    quality: 70,
+                    suffix: '-medium'
+                },
+                {
+                    width: 100,
+                    percentage: true,
+                    quality: 70,
+                    suffix: '-original'
+                }
+            ]
+        }))
+        // .pipe(webp())
         .pipe(gulp.dest("buildTool/img"));
 });
 
